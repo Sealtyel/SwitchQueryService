@@ -1,0 +1,13 @@
+﻿Installing assembly 'C:\Users\CASTILS\Documents\Visual Studio 2013\Projects\SwitchQueryService\SwitchQueryService\bin\Release\SwitchQueryService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\CASTILS\Documents\Visual Studio 2013\Projects\SwitchQueryService\SwitchQueryService\bin\Release\SwitchQueryService.InstallLog
+   assemblypath = C:\Users\CASTILS\Documents\Visual Studio 2013\Projects\SwitchQueryService\SwitchQueryService\bin\Release\SwitchQueryService.exe
+Installing service Service1...
+Creating EventLog source Service1 in log Application...
+Rolling back assembly 'C:\Users\CASTILS\Documents\Visual Studio 2013\Projects\SwitchQueryService\SwitchQueryService\bin\Release\SwitchQueryService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\CASTILS\Documents\Visual Studio 2013\Projects\SwitchQueryService\SwitchQueryService\bin\Release\SwitchQueryService.InstallLog
+   assemblypath = C:\Users\CASTILS\Documents\Visual Studio 2013\Projects\SwitchQueryService\SwitchQueryService\bin\Release\SwitchQueryService.exe
+Restoring event log to previous state for source Service1.

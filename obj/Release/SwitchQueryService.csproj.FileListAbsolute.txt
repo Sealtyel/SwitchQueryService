@@ -1,0 +1,8 @@
+C:\Users\CASTILS\documents\visual studio 2013\Projects\SwitchQueryService\SwitchQueryService\bin\Release\SwitchQueryService.exe.config
+C:\Users\CASTILS\documents\visual studio 2013\Projects\SwitchQueryService\SwitchQueryService\bin\Release\SwitchQueryService.exe
+C:\Users\CASTILS\documents\visual studio 2013\Projects\SwitchQueryService\SwitchQueryService\bin\Release\SwitchQueryService.pdb
+C:\Users\CASTILS\documents\visual studio 2013\Projects\SwitchQueryService\SwitchQueryService\obj\Release\SwitchQueryService.ProjectInstaller.resources
+C:\Users\CASTILS\documents\visual studio 2013\Projects\SwitchQueryService\SwitchQueryService\obj\Release\SwitchQueryService.Service1.resources
+C:\Users\CASTILS\documents\visual studio 2013\Projects\SwitchQueryService\SwitchQueryService\obj\Release\SwitchQueryService.csproj.GenerateResource.Cache
+C:\Users\CASTILS\documents\visual studio 2013\Projects\SwitchQueryService\SwitchQueryService\obj\Release\SwitchQueryService.exe
+C:\Users\CASTILS\documents\visual studio 2013\Projects\SwitchQueryService\SwitchQueryService\obj\Release\SwitchQueryService.pdb
