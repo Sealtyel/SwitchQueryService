@@ -6,3 +6,4 @@ C:\Users\CASTILS\documents\visual studio 2013\Projects\SwitchQueryService\Switch
 C:\Users\CASTILS\documents\visual studio 2013\Projects\SwitchQueryService\SwitchQueryService\obj\Release\SwitchQueryService.csproj.GenerateResource.Cache
 C:\Users\CASTILS\documents\visual studio 2013\Projects\SwitchQueryService\SwitchQueryService\obj\Release\SwitchQueryService.exe
 C:\Users\CASTILS\documents\visual studio 2013\Projects\SwitchQueryService\SwitchQueryService\obj\Release\SwitchQueryService.pdb
+C:\Users\CASTILS\documents\visual studio 2013\Projects\SwitchQueryService\SwitchQueryService\obj\Release\SwitchQueryService.csprojResolveAssemblyReference.cache
