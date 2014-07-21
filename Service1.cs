@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SwitchTracking;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,12 +15,13 @@ namespace SwitchQueryService
 {
     public partial class Service1 : ServiceBase
     {
-        DateTime hora1=new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day,13,33,5);//hora 1 dia de hoy, hora a cambiar
-        DateTime hora2 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 13, 33, 20);//hora 2 dia de hoy, hora a cambiar
+        DateTime hora1 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, 22, 0);//hora 1 dia de hoy, hora a cambiar
+        DateTime hora2 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, 29, 0);//hora 2 dia de hoy, hora a cambiar
         StreamWriter file;
         Timer timer;
-        int interval1,interval2;
-      
+        int corridas=0;
+        int interval1, interval2;
+
         //DateTime date=DateTime.Now;
         public Service1()
         {
@@ -28,12 +30,10 @@ namespace SwitchQueryService
 
         protected override void OnStart(string[] args)
         {
-           
             file = new System.IO.StreamWriter("c:\\testService.txt");
             timer = new Timer(1000);
             timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
             timer.Enabled = true; // Enable it
-
         }
 
         protected override void OnStop()
@@ -44,50 +44,68 @@ namespace SwitchQueryService
             file.WriteLine(lines);
             file.Close();
         }
-       protected void timer_Elapsed(object sender, ElapsedEventArgs e)
+        protected void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-
-            TimeSpan rango;
-            file.WriteLine("Fecha ahora= " + DateTime.Now);
-            file.WriteLine("Fecha 1: "+hora1);
-            file.WriteLine("Fecha 2: " + hora2);
-            file.WriteLine("Diferencia de fecha actual a Fecha 1: "+(rango = hora1.Subtract(DateTime.Now)).ToString());
-            file.WriteLine("Diferencia de fecha actual a Fecha 2: "+(rango = hora2.Subtract(DateTime.Now)).ToString());
-
-            if (hora1.CompareTo(TimeSpan.Zero)<0)
+            try
             {
-                timer.Interval=hora2.Millisecond;
-                hora2.AddMinutes(1);
-            }
-            else
-            {
-                if (hora2.CompareTo(TimeSpan.Zero) < 0)
+
+
+                if (corridas>=1)
                 {
-                    timer.Interval = hora1.Millisecond;
-                    hora1.AddMinutes(1);
+                    SwitchQuery.spSwitchProcess();
+                   
+                }
+                corridas++;
+                file.WriteLine("Fecha actual= " + DateTime.Now);
+                TimeSpan rango1, rango2;
+                
+                //file.WriteLine("Fecha 1: " + hora1);
+                //file.WriteLine("Fecha 2: " + hora2);
+                //file.WriteLine("Diferencia de fecha actual a Fecha 1: " + (rango1 = hora1.Subtract(DateTime.Now)).ToString());
+                //file.WriteLine("Diferencia de fecha actual a Fecha 2: " + (rango2 = hora2.Subtract(DateTime.Now)).ToString());
+                rango1 = hora1.Subtract(DateTime.Now);
+                rango2 = hora2.Subtract(DateTime.Now);
+                if (TimeSpan.Compare(rango1, TimeSpan.Zero) == -1)//la hora 1 ya paso
+                {
+                    file.WriteLine("Hora 1 ya paso");
+                    timer.Interval = hora2.Millisecond;
+                    hora1 = hora1.AddHours(1);
+
                 }
                 else
                 {
-                    timer.Interval = Math.Min(hora1.Millisecond,hora2.Millisecond);
-                    hora1.AddMinutes(1);
-                    hora2.AddMinutes(1);
+                    if (TimeSpan.Compare(rango2, TimeSpan.Zero) == -1)//la hora 2 ya paso
+                    {
+                        file.WriteLine("Hora 2 ya paso");
+                        timer.Interval = hora1.Millisecond;
+                        hora2 = hora2.AddHours(1);
+                    }
+                    else
+                    {
+                        timer.Interval = Math.Min(rango1.TotalMilliseconds, rango2.TotalMilliseconds);
+                        //file.WriteLine("Nuevo Intervalo "+timer.Interval/1000+" segundos");
+                        if (TimeSpan.Compare(rango1, rango2) == -1)
+                        {
+                            hora1 = hora1.AddHours(1);
+                        }
+                        else
+                        {
+                            hora2 = hora2.AddHours(1);
+                        }
+                    }
                 }
+
+                file.WriteLine();
+
+
             }
-            
+            catch (Exception ex)
+            {
+                file.WriteLine(ex.GetBaseException());
+                
+            }
 
-            //hora1.AddDays(1);
-            //hora2.AddDays(2);
-
-            //interval1 = (hora1.Minute - DateTime.Now.Minute) * 60000;
-            //interval2 = (hora2.Minute - DateTime.Now.Minute) * 60000;
-            //timer.Interval = Math.Min(interval1, interval2);
-            //file.WriteLine("Interval despues= "+timer.Interval);
-            file.WriteLine();
-
-            //timer.Interval = 600000;
-            
 
         }
-
     }
 }
